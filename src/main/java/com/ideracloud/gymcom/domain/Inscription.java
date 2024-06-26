@@ -19,7 +19,7 @@ import java.util.List;
 public class Inscription extends Base<Inscription>{
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     Long id;
     String cin;
     @Enumerated(EnumType.STRING)

@@ -8,4 +8,5 @@ import lombok.Data;
 public class DataRef {
     String code;
     String description;
+    double value;
 }

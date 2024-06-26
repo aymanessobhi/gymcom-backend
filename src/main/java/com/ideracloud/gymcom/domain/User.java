@@ -16,7 +16,7 @@ import java.util.Set;
 @Table(name = "GYM_USER")
 public class User extends Base<User> implements UserDetails {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     Long id;
     String code;
     String nom;

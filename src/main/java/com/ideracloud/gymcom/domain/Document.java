@@ -14,7 +14,7 @@ import lombok.NoArgsConstructor;
 public class Document extends Base<Document> {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     Long id;
     @Enumerated(EnumType.STRING)
     TypeDocument type;
