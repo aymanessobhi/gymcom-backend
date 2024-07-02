@@ -18,15 +18,26 @@ public class Paiement extends Base<Paiement>{
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     Long id;
+    @Column(nullable = false)
     @Enumerated(EnumType.STRING)
     TypePaiement typePaie;
+    @Column(nullable = false)
     double totalAPaye;
+    @Column(nullable = false)
     double montantPaye;
+    @Column(nullable = false)
     double resteAPaye;
+    @Column(nullable = false)
     boolean assuranceInclu;
+
     @Temporal(TemporalType.DATE)
     Date datePaiementCheque;
+
+    @Temporal(TemporalType.DATE)
+    Date datePaiement;
+
     String numeroCheque;
+
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "INSCRIPTION_ID")
     Inscription inscription;

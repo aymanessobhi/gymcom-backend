@@ -48,4 +48,13 @@ public class DataServiceImpl implements DataService {
         return list;
     }
 
+    @Override
+    public List<DataRef> loadTPaiement() {
+        List<DataRef> list = new ArrayList<>();
+        list.add(new DataRef(TypePaiement.CHEQUE.name(),TypePaiement.CHEQUE.description, 0));
+        list.add(new DataRef(TypePaiement.ESPECE.name(),TypePaiement.ESPECE.description, 0));
+        list.add(new DataRef(TypePaiement.VIREMENT.name(),TypePaiement.VIREMENT.description, 0));
+        return list;
+    }
+
 }

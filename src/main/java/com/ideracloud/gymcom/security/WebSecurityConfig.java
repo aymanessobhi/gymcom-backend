@@ -44,7 +44,7 @@ public class WebSecurityConfig {
     public SecurityFilterChain configure(HttpSecurity http) throws Exception{
         AuthenticationManager authenticationManager =  authenticationManager(Ac);
         http.cors(Customizer.withDefaults()).csrf(AbstractHttpConfigurer::disable).
-                authorizeHttpRequests((authz)->authz.requestMatchers("/auth/**","/inscription/**","/data/**").permitAll().anyRequest().authenticated())
+                authorizeHttpRequests((authz)->authz.requestMatchers("/auth/**","/inscription/**","/data/**","/paiement/**").permitAll().anyRequest().authenticated())
                 .authenticationManager(authenticationManager)
                 .addFilterBefore(authenticationTokenFilterBean(),UsernamePasswordAuthenticationFilter.class).exceptionHandling((handle)->handle.authenticationEntryPoint(unauthorizedEntryPoint))
                 .sessionManagement((session) -> session

@@ -12,5 +12,6 @@ public class DataDto {
     List<DataRef> genre;
     List<DataRef> status;
     List<DataRef> typeAbonnement;
+    List<DataRef> typePaiement;
 
 }

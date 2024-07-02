@@ -26,7 +26,7 @@ public class DataController {
         data.setDocumentType(dataService.loadSDocType());
         data.setStatus(dataService.loadStatus());
         data.setTypeAbonnement(dataService.loadTAboon());
-
+        data.setTypePaiement(dataService.loadTPaiement());
         return ApiResponse.ok(data);
     }
 }

@@ -10,5 +10,6 @@ public interface DataService {
     List<DataRef> loadSDocType();
     List<DataRef> loadStatus();
     List<DataRef> loadTAboon();
+    List<DataRef> loadTPaiement();
 
 }

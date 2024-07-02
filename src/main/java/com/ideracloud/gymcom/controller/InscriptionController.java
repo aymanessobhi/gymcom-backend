@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.util.Base64;
+import java.util.List;
 
 @RestController
 @RequestMapping("/inscription")
@@ -65,6 +66,10 @@ public class InscriptionController {
         Resource resource =  inscriptionService.load(filename);
         String fileBase64 = Base64.getMimeEncoder().encodeToString(resource.getContentAsByteArray());
         return ResponseEntity.ok(fileBase64);
+    }
+    @GetMapping("list")
+    public ApiResponse<List<PaiementDto>> listInscriptions(){
+        return ApiResponse.ok(inscriptionService.listInscriptions());
     }
 
     @PostMapping("upload")

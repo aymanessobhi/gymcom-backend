@@ -27,6 +27,8 @@ import java.net.MalformedURLException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.util.List;
+import java.util.stream.Collectors;
 
 @Service
 @Slf4j
@@ -50,7 +52,11 @@ public class InscriptionServiceImpl implements InscriptionService {
 
 
     @Override
-    public DocumentDto upload(Long id, MultipartFile file, TypeDocument type) {
+    public DocumentDto upload(Long id, MultipartFile file, TypeDocument type) throws IOException {
+
+        if (!Files.exists(root)) {
+            Files.createDirectories(root);
+        }
 
         Inscription dca  = id > 0 ?  inscriptionRepository.findById(id).orElse(null) : null;
         Document doc = new Document();
@@ -96,10 +102,22 @@ public class InscriptionServiceImpl implements InscriptionService {
 
     @Override
     public InscriptionDto update(InscriptionDto dto) {
-        inscriptionRepository.findById(dto.getId()).map(s->
+        inscriptionRepository.findById(dto.getId()).map(i->
         {
-
-            return inscriptionRepository.save(s);
+            i.setAbonnment(dto.getAbonnment());
+            i.setNom(dto.getNom());
+            i.setCin(dto.getCin());
+            i.setDatenaiss(dto.getDatenaiss());
+            i.setAbonnment(dto.getAbonnment());
+            i.setDateDebut(dto.getDateDebut());
+            i.setDateFin(dto.getDateFin());
+            i.setActive(dto.isActive());
+            i.setPrenom(dto.getPrenom());
+            i.setGenre(dto.getGenre());
+            i.setStatus(dto.getStatus());
+            i.setTele(dto.getTele());
+            i.setDocuments(dto.getDocuments().stream().map(documentMapper::toEntity) .collect(Collectors.toList()));
+            return inscriptionRepository.save(i);
         }).orElseGet(()->null);
         return inscriptionMapper.toDto(inscriptionRepository.findById(dto.getId()).orElse(null));
     }
@@ -118,6 +136,10 @@ public class InscriptionServiceImpl implements InscriptionService {
         return inscriptionMapper.toDto(obj);
     }
 
+    @Override
+    public List<InscriptionDto> listInscriptions() {
+        return inscriptionRepository.findAll().stream().map( i -> inscriptionMapper.toDto(i)).collect(Collectors.toList());
+    }
 
 
     @Override
