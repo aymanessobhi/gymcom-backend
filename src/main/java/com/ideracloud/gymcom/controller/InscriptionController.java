@@ -60,12 +60,10 @@ public class InscriptionController {
         return ApiResponse.ok(inscriptionService.search(dto));
     }
 
-    @GetMapping("load")
-    @ResponseBody
-    public ResponseEntity<String> downloadFile(@RequestParam("filename") String filename) throws Exception {
+    @GetMapping("load/{filename}")
+    public @ResponseBody byte[] downloadFile(@PathVariable("filename") String filename) throws Exception {
         Resource resource =  inscriptionService.load(filename);
-        String fileBase64 = Base64.getMimeEncoder().encodeToString(resource.getContentAsByteArray());
-        return ResponseEntity.ok(fileBase64);
+        return resource.getContentAsByteArray();
     }
     @GetMapping("list")
     public ApiResponse<List<PaiementDto>> listInscriptions(){

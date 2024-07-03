@@ -67,12 +67,12 @@ public class InscriptionServiceImpl implements InscriptionService {
             String extension = FilenameUtils.getExtension(file.getOriginalFilename());
             String filename = sig+"."+extension;
 
-            Files.copy(file.getInputStream(), this.root.resolve(sig+"."+extension));
+            Files.copy(file.getInputStream(), this.root.resolve(filename));
             String fileDownloadUri = ServletUriComponentsBuilder
                     .fromCurrentContextPath()
-                    .path("/inscription/files/")
+                    .path("/inscription/load/")
                     .path(String.valueOf(id))
-                    .path(file.getOriginalFilename())
+                    .path(filename)
                     .toUriString();
             doc.setFilenameUser(file.getOriginalFilename());
             doc.setFilename(filename);
