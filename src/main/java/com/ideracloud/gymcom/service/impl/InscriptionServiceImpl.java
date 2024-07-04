@@ -62,10 +62,8 @@ public class InscriptionServiceImpl implements InscriptionService {
         Document doc = new Document();
 
         try{
-            long millis = System.currentTimeMillis();
-            String sig = Long.toHexString(millis);
             String extension = FilenameUtils.getExtension(file.getOriginalFilename());
-            String filename = sig+"."+extension;
+            String filename = file.getOriginalFilename()+"."+extension;
 
             Files.copy(file.getInputStream(), this.root.resolve(filename));
             String fileDownloadUri = ServletUriComponentsBuilder
