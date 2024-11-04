@@ -13,5 +13,7 @@ public class DataDto {
     List<DataRef> status;
     List<DataRef> typeAbonnement;
     List<DataRef> typePaiement;
+    List<InscriptionDto> inscriptions;
+    List<PaiementDto> paiements;
 
 }

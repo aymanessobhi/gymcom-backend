@@ -18,6 +18,10 @@ public class DataController {
 
     @Autowired
     DataService dataService;
+    @Autowired
+    PaiementService paiementService;
+    @Autowired
+    InscriptionService inscriptionService;
 
     @GetMapping("")
     public ApiResponse<DataDto> getData() {
@@ -27,6 +31,8 @@ public class DataController {
         data.setStatus(dataService.loadStatus());
         data.setTypeAbonnement(dataService.loadTAboon());
         data.setTypePaiement(dataService.loadTPaiement());
+        data.setPaiements(paiementService.listPaiements());
+        data.setInscriptions(inscriptionService.listInscriptions());
         return ApiResponse.ok(data);
     }
 }

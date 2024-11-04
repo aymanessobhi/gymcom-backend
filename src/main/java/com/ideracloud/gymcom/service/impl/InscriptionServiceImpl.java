@@ -62,8 +62,10 @@ public class InscriptionServiceImpl implements InscriptionService {
         Document doc = new Document();
 
         try{
+            long millis = System.currentTimeMillis();
+            String sig = Long.toHexString(millis);
             String extension = FilenameUtils.getExtension(file.getOriginalFilename());
-            String filename = file.getOriginalFilename()+"."+extension;
+            String filename = sig+"."+extension;
 
             Files.copy(file.getInputStream(), this.root.resolve(filename));
             String fileDownloadUri = ServletUriComponentsBuilder
@@ -173,6 +175,10 @@ public class InscriptionServiceImpl implements InscriptionService {
     public void deleteInscription(Long id) {
         Inscription s = inscriptionRepository.findById(id).orElse(null);
         if(s != null){
+            for(Document doc : s.getDocuments()){
+                doc.setInscription(s);
+                documentRepository.delete(doc);
+            }
             inscriptionRepository.delete(s);
         }
     }
