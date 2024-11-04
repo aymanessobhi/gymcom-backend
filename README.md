@@ -1,4 +1,4 @@
 # gymcom-be
 
-![image](https://github.com/user-attachments/assets/09d463bd-21e6-4107-9e60-ed0045185a64)
+![image](https://github.com/user-attachments/assets/f16334d2-eb6e-4db4-a378-d54f762a6398)
 
